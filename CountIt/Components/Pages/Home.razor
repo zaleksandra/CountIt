@@ -1,0 +1,44 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<PageTitle>Count my words</PageTitle>
+
+@using System.Text.RegularExpressions
+@using CountIt.Services
+
+<h1 class="title-mian">Word Counter</h1>
+<h1 class="title-secondary">(ignores numbers)</h1>
+
+<div class="row my-4">
+    <form @onsubmit="OnSubmit">
+        <label for="inputText" class="form-label">Input text (document)</label>
+        <textarea id="inputText" @bind="InputText" class="form-control" rows="10"></textarea>
+        <button type="submit" class="btn mt-3 my-button">Count</button>
+    </form>
+
+    @if (wordsCount.Count > 0)
+    {
+        <div class="mt-4">
+            <h4>Output (Unique Words + Count)</h4>
+            <ul class="list-group">
+                @foreach (KeyValuePair<string, int> wordCount in wordsCount){
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>@wordCount.Key</span> <span>@wordCount.Value</span>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+   
+</div>
+
+@code {
+    @inject IDocumentService documentService
+    private string InputText { get; set; } = string.Empty;
+    private Dictionary<string, int> wordsCount { get; set; } = new Dictionary<string, int>();
+
+    private void OnSubmit()
+    {
+        wordsCount = documentService.CountUniqueWords(InputText);
+    }
+}

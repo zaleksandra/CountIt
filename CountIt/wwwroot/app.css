@@ -1,0 +1,39 @@
+html, body {
+    min-height: 100%;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue";
+}
+
+body {
+    background: linear-gradient(135deg, #ffaa30 0%, #fe7000 80.21%);
+}
+
+header {
+    background:#FFF;
+}
+
+.logo {
+    width: 100px;
+}
+
+.main-content {
+
+    color: #FFF;
+}
+
+.title-mian, .title-secondary {
+    font-weight: bold;
+}
+
+.title-mian {
+    text-transform: uppercase;
+    -webkit-text-stroke: 1px #fff;
+    color: transparent;
+    font-size: 48px;
+}
+
+.my-button {
+    background-color: #6131AD;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: bold;
+}
